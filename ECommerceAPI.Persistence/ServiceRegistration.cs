@@ -1,5 +1,7 @@
 using ECommerceAPI.Application.Abstractions;
 using ECommerceAPI.Persistence.Concretes;
+using ECommerceAPI.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerceAPI.Persistence;
