@@ -12,7 +12,7 @@ static class Configuration
             configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory()));
             configurationManager.AddJsonFile("persistencesettings.json");
             
-            return configurationManager.GetConnectionString("PostgresConnection");
+            return configurationManager.GetConnectionString("PostgresConnection")!;
         }
     }
 }

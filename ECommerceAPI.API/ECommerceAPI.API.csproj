@@ -15,4 +15,8 @@
       <ProjectReference Include="..\ECommerceAPI.Persistence\ECommerceAPI.Persistence.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="persistencesettings.json" />
+    </ItemGroup>
+
 </Project>
