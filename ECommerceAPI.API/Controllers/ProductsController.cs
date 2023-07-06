@@ -1,5 +1,6 @@
 using System.Net;
 using ECommerceAPI.Application.Repositories.Product;
+using ECommerceAPI.Application.RequestParameters;
 using ECommerceAPI.Domain.Entities;
 using ECommerceAPI.Persistence.ViewModels.Products;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +21,28 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult Get()
+    public IActionResult Get([FromQuery] Pagination pagination)
     {
-        return Ok(_productReadRepository.GetAll(false));
+        var totalCount = _productReadRepository.GetAll(false).Count();
+        var products = _productReadRepository.GetAll(false)
+            .OrderBy(product => product.CreatedAt)
+            .Skip(pagination.Page * pagination.Size)
+            .Take(pagination.Size)
+            .Select(p => new
+            {
+                p.Id,
+                p.Name,
+                p.Price,
+                p.Stock,
+                p.UpdatedAt,
+                p.CreatedAt
+            }).ToList();
+
+        return Ok(new
+        {
+            totalCount,
+            products
+        });
     }
     
     [HttpGet("{id}")]
@@ -39,7 +59,7 @@ public class ProductsController : ControllerBase
             Name = model.Name,
             Description = model.Description,
             Price = model.Price,
-            Quantity = model.Quantity
+            Stock = model.Quantity
         });
 
         await _productWriteRepository.SaveChangesAsync();
@@ -55,7 +75,7 @@ public class ProductsController : ControllerBase
         product.Name = model.Name;
         product.Description = model.Description;
         product.Price = model.Price;
-        product.Quantity = model.Quantity;
+        product.Stock = model.Quantity;
         
         await _productWriteRepository.SaveChangesAsync();
         return Ok();
