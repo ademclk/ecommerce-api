@@ -24,4 +24,12 @@
       <None Include="persistencesettings.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Remove="wwwroot\" />
+      <Content Remove="wwwroot\resource\product-images\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="wwwroot\" />
+      <Folder Include="wwwroot\resource\product-images\" />
+    </ItemGroup>
 </Project>
