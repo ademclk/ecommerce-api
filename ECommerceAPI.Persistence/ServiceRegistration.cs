@@ -12,15 +12,15 @@ namespace ECommerceAPI.Persistence;
 
 public static class ServiceRegistration
 {
-    public static void AddPersistence(this IServiceCollection serviceCollection)
+    public static void AddPersistence(this IServiceCollection service)
     {
-        serviceCollection.AddDbContext<ECommerceApiDbContext>(options =>
+        service.AddDbContext<ECommerceApiDbContext>(options =>
             options.UseNpgsql(Configuration.ConnectionString));
-        serviceCollection.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
-        serviceCollection.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
-        serviceCollection.AddScoped<IOrderReadRepository, OrderReadRepository>();
-        serviceCollection.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
-        serviceCollection.AddScoped<IProductReadRepository, ProductReadRepository>();
-        serviceCollection.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+        service.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
+        service.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+        service.AddScoped<IOrderReadRepository, OrderReadRepository>();
+        service.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
+        service.AddScoped<IProductReadRepository, ProductReadRepository>();
+        service.AddScoped<IProductWriteRepository, ProductWriteRepository>();
     }
 }

@@ -10,4 +10,12 @@
       <ProjectReference Include="..\ECommerceAPI.Application\ECommerceAPI.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Services\" />
+      <None Remove="Utilities\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Services\" />
+      <Folder Include="Utilities\" />
+    </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 using System.Net;
 using ECommerceAPI.Application.Repositories.Product;
 using ECommerceAPI.Application.RequestParameters;
+using ECommerceAPI.Application.Services;
 using ECommerceAPI.Domain.Entities;
 using ECommerceAPI.Persistence.ViewModels.Products;
 using Microsoft.AspNetCore.Mvc;
@@ -13,15 +14,15 @@ public class ProductsController : ControllerBase
 {
     private readonly IProductWriteRepository _productWriteRepository;
     private readonly IProductReadRepository _productReadRepository;
-    private readonly IWebHostEnvironment _webHostEnvironment;
+    private readonly IFileService _fileService;
 
-    public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IWebHostEnvironment webHostEnvironment)
+    public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IFileService fileService)
     {
         _productWriteRepository = productWriteRepository;
         _productReadRepository = productReadRepository;
-        _webHostEnvironment = webHostEnvironment;
+        _fileService = fileService;
     }
-
+ 
     [HttpGet]
     public IActionResult Get([FromQuery] Pagination pagination)
     {
@@ -94,24 +95,8 @@ public class ProductsController : ControllerBase
     [HttpPost("[action]")]
     public async Task<IActionResult> Upload()
     {
-        string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/product-images");
+        await _fileService.UploadAsync("resource/product-images/", Request.Form.Files);
 
-        string guid = Guid.NewGuid().ToString().Replace("-", "");
-
-        if (!Directory.Exists(uploadPath))
-        {
-            Directory.CreateDirectory(uploadPath);
-        }
-
-        foreach (var file in Request.Form.Files)
-        {
-            string fullPath = Path.Combine(uploadPath, $"{guid}{Path.GetExtension(file.FileName)}");
-
-            using FileStream fileStream = new(fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
-
-            await file.CopyToAsync(fileStream);
-            await fileStream.FlushAsync();
-        }
 
         return Ok();
     }

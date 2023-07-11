@@ -1,4 +1,5 @@
 using ECommerceAPI.Application.Validators.Products;
+using ECommerceAPI.Infrastructure;
 using ECommerceAPI.Infrastructure.Filters;
 using ECommerceAPI.Persistence;
 using FluentValidation;
@@ -18,6 +19,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddPersistence();
+builder.Services.AddInfrastructure();
 
 builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>());
 
