@@ -20,7 +20,7 @@ public class AzureStorage : Storage, IAzureStorage
     {
         _blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
 
-        return _blobContainerClient.GetBlobs().Any(b => b.Name != fileName);
+        return _blobContainerClient.GetBlobs().Any(b => b.Name == fileName);
     }
 
     public async Task DeleteAsync(string containerName, string fileName)

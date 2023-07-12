@@ -21,7 +21,7 @@ public class Storage
 
             int count = 1;
 
-            while (containsFile(pathOrContainerName, fileName))
+            while (containsFile(pathOrContainerName, updatedFileName))
             {   
                 updatedFileName = $"{updatedFileName}-{count}";
                 count++;
