@@ -75,7 +75,7 @@ public class FileService : IFileService
 
             string filePath = Path.Combine(uploadPath, changedFileName);
             var result = await CopyFileAsync(filePath, file);
-            values.Add((changedFileName, filePath));
+            values.Add((changedFileName, path));
             results.Add(result);
         }
 

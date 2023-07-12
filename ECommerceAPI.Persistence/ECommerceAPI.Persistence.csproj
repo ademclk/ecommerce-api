@@ -29,6 +29,14 @@
 
     <ItemGroup>
       <Folder Include="Concretes\" />
+      <Folder Include="Repositories\File\" />
+      <Folder Include="Repositories\InvoiceFile\" />
+      <Folder Include="Repositories\ProductImageFile\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Repositories\File\" />
+      <None Remove="Repositories\InvoiceFile\" />
+      <None Remove="Repositories\ProductImageFile\" />
+    </ItemGroup>
 </Project>

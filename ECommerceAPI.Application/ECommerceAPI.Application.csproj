@@ -19,8 +19,14 @@
 
     <ItemGroup>
       <None Remove="Services\" />
+      <None Remove="Repositories\File\" />
+      <None Remove="Repositories\InvoiceFile\" />
+      <None Remove="Repositories\ProductImageFile\" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Services\" />
+      <Folder Include="Repositories\File\" />
+      <Folder Include="Repositories\InvoiceFile\" />
+      <Folder Include="Repositories\ProductImageFile\" />
     </ItemGroup>
 </Project>
