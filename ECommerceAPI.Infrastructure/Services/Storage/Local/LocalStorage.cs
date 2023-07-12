@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace ECommerceAPI.Infrastructure.Services.Storage.Local;
 
-public class LocalStorage : ILocalStorage
+public class LocalStorage : Storage, ILocalStorage
 {
     private readonly IWebHostEnvironment _webHostEnvironment;
 
@@ -28,9 +28,9 @@ public class LocalStorage : ILocalStorage
         return directoryInfo.GetFiles().Select(file => file.Name).ToList();
     }
 
-    public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string pathOrContainerName, IFormFileCollection files)
+    public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string path, IFormFileCollection files)
     {
-        var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, pathOrContainerName);
+        var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, path);
 
         if (!Directory.Exists(uploadPath))
             Directory.CreateDirectory(uploadPath);
@@ -39,9 +39,11 @@ public class LocalStorage : ILocalStorage
 
         foreach (IFormFile file in files)
         {
-            string filePath = Path.Combine(uploadPath, file.Name);
+            var changedFileName = await RenameFileAsync(uploadPath, file.Name, ContainsFile);
+
+            string filePath = Path.Combine(uploadPath, changedFileName);
             await CopyFileAsync(filePath, file);
-            fileInfoList.Add((file.Name, pathOrContainerName));
+            fileInfoList.Add((changedFileName, path));
         }
 
         return fileInfoList;

@@ -24,6 +24,9 @@
       <None Remove="Abstractions\" />
       <None Remove="Abstractions\Storage\" />
       <None Remove="Abstractions\Storage\Local\" />
+      <None Remove="Abstractions\Storage\AWS\" />
+      <None Remove="Abstractions\Storage\Google\" />
+      <None Remove="Abstractions\Storage\Azure\" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Repositories\File\" />
@@ -32,5 +35,8 @@
       <Folder Include="Abstractions\" />
       <Folder Include="Abstractions\Storage\" />
       <Folder Include="Abstractions\Storage\Local\" />
+      <Folder Include="Abstractions\Storage\AWS\" />
+      <Folder Include="Abstractions\Storage\Google\" />
+      <Folder Include="Abstractions\Storage\Azure\" />
     </ItemGroup>
 </Project>

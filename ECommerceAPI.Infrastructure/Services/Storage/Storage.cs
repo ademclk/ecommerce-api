@@ -1,11 +1,13 @@
-﻿using ECommerceAPI.Infrastructure.Utilities;
+﻿using System;
+using ECommerceAPI.Infrastructure.Utilities;
 
-namespace ECommerceAPI.Infrastructure.Services;
+namespace ECommerceAPI.Infrastructure.Services.Storage;
 
-public class FileService
+public class Storage
 {
+    protected delegate bool ContainsFile(string pathOrContainerName, string fileName);
 
-    private async Task<string> RenameFileAsync(string path, string fileName)
+    protected static async Task<string> RenameFileAsync(string pathOrContainerName, string fileName, ContainsFile containsFile)
     {
 
         var renamedFileName = await Task.Run(() =>
@@ -19,8 +21,8 @@ public class FileService
 
             int count = 1;
 
-            while (File.Exists($"{path}{Path.DirectorySeparatorChar}{updatedFileName}{fileExtension}"))
-            {
+            while (containsFile(pathOrContainerName, fileName))
+            {   
                 updatedFileName = $"{updatedFileName}-{count}";
                 count++;
             }
