@@ -14,19 +14,23 @@
       <PackageReference Include="FluentValidation" Version="11.6.0" />
       <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.6.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Services\" />
       <None Remove="Repositories\File\" />
       <None Remove="Repositories\InvoiceFile\" />
       <None Remove="Repositories\ProductImageFile\" />
+      <None Remove="Abstractions\" />
+      <None Remove="Abstractions\Storage\" />
+      <None Remove="Abstractions\Storage\Local\" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Services\" />
       <Folder Include="Repositories\File\" />
       <Folder Include="Repositories\InvoiceFile\" />
       <Folder Include="Repositories\ProductImageFile\" />
+      <Folder Include="Abstractions\" />
+      <Folder Include="Abstractions\Storage\" />
+      <Folder Include="Abstractions\Storage\Local\" />
     </ItemGroup>
 </Project>

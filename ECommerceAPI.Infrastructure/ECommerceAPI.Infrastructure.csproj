@@ -13,9 +13,19 @@
     <ItemGroup>
       <None Remove="Services\" />
       <None Remove="Utilities\" />
+      <None Remove="Services\Storage\" />
+      <None Remove="Services\Storage\Local\" />
+      <None Remove="Services\Storage\AWS\" />
+      <None Remove="Services\Storage\Azure\" />
+      <None Remove="Enums\" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Services\" />
       <Folder Include="Utilities\" />
+      <Folder Include="Services\Storage\" />
+      <Folder Include="Services\Storage\Local\" />
+      <Folder Include="Services\Storage\AWS\" />
+      <Folder Include="Services\Storage\Azure\" />
+      <Folder Include="Enums\" />
     </ItemGroup>
 </Project>
