@@ -86,7 +86,7 @@ public class ProductsController : ControllerBase
             Name = model.Name,
             Description = model.Description,
             Price = model.Price,
-            Stock = model.Quantity
+            Stock = model.Stock
         });
 
         await _productWriteRepository.SaveChangesAsync();
@@ -102,7 +102,7 @@ public class ProductsController : ControllerBase
         product.Name = model.Name;
         product.Description = model.Description;
         product.Price = model.Price;
-        product.Stock = model.Quantity;
+        product.Stock = model.Stock;
 
         await _productWriteRepository.SaveChangesAsync();
         return Ok();

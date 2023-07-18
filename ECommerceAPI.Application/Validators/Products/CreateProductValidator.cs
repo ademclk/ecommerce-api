@@ -23,12 +23,12 @@ public class CreateProductValidator: AbstractValidator<VmCreateProduct>
             .MinimumLength(10)
             .WithMessage("Description must be between 10 and 500 characters");
 
-        RuleFor(p => p.Quantity)
+        RuleFor(p => p.Stock)
             .NotEmpty()
             .NotNull()
-            .WithMessage("Quantity is required")
+            .WithMessage("Stock is required")
             .GreaterThan(0)
-            .WithMessage("Quantity must be greater than 0");
+            .WithMessage("Stock must be greater than 0");
         
         RuleFor(p => p.Price)
             .NotEmpty()
@@ -36,6 +36,6 @@ public class CreateProductValidator: AbstractValidator<VmCreateProduct>
             .WithMessage("Price is required")
             .GreaterThan(0)
             .WithMessage("Price must be greater than 0");
-
+        
     }
 }
