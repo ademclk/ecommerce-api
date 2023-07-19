@@ -6,7 +6,7 @@ public static class NameUtility
 {
     public static string RemoveNonAlphabeticCharacters(string name)
     {
-        var loweredReplacedName = name.ToLower().Replace(" ", "-");
+        var loweredReplacedName = name.ToLower().Replace("-", "").Replace(" ", "-");
 
         var stringBuilder = new StringBuilder();
 

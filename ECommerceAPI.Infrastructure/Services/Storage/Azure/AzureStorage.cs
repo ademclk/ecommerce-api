@@ -51,7 +51,7 @@ public class AzureStorage : Storage, IAzureStorage
 
             BlobClient blobClient = _blobContainerClient.GetBlobClient(changedFileName);
             await blobClient.UploadAsync(file.OpenReadStream());
-            fileInfoList.Add((file.Name, containerName));
+            fileInfoList.Add((file.Name, $"{containerName}/{changedFileName}"));
         }
         return fileInfoList;
     }
