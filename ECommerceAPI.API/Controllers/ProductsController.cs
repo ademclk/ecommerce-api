@@ -8,7 +8,7 @@ using ECommerceAPI.Application.RequestParameters;
 using ECommerceAPI.Domain.Entities;
 using ECommerceAPI.Persistence.ViewModels.Products;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 namespace ECommerceAPI.API.Controllers;
 
 [ApiController]
@@ -116,7 +116,22 @@ public class ProductsController : ControllerBase
         return Ok();
     }
 
-    [HttpPost("[action]/{id}")]
+    [HttpDelete("[action]/{productId}/{imageId}")]
+    public async Task<IActionResult> DeleteImage(string productId, string imageId)
+    {
+        var product = await _productReadRepository.Table.Include(p => p.ProductImageFiles)
+            .FirstOrDefaultAsync(p => p.Id == Guid.Parse(productId));
+
+        var productImageFile = product.ProductImageFiles.FirstOrDefault(i => i.Id == Guid.Parse(imageId));
+
+        product.ProductImageFiles.Remove(productImageFile);
+
+        await _productWriteRepository.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpPost("[action]")]
     public async Task<IActionResult> Upload(string id)
     {
         var fileInfoList = await _storageService.UploadAsync("images", Request.Form.Files);
@@ -134,5 +149,19 @@ public class ProductsController : ControllerBase
         await _productImageFileWriteRepository.SaveChangesAsync();
 
         return Ok();
+    }
+
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetImages(string id)
+    {
+        Product? product = await _productReadRepository.Table.Include(p => p.ProductImageFiles)
+            .FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
+
+        return Ok(product?.ProductImageFiles.Select(p => new
+        {
+            p.Id,
+            p.Path,
+            p.FileName
+        }));
     }
 }
