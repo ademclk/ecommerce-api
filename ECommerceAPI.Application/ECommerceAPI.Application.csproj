@@ -15,6 +15,8 @@
       <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.6.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+      <PackageReference Include="MediatR" Version="12.1.1" />
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,6 +29,21 @@
       <None Remove="Abstractions\Storage\AWS\" />
       <None Remove="Abstractions\Storage\Google\" />
       <None Remove="Abstractions\Storage\Azure\" />
+      <None Remove="Features\" />
+      <None Remove="Features\Commands\" />
+      <None Remove="Features\Queries\" />
+      <None Remove="Features\Commands\Product\" />
+      <None Remove="Features\Commands\Product\CreateProduct\" />
+      <None Remove="Features\Queries\Product\" />
+      <None Remove="Features\Queries\Product\GetAllProducts\" />
+      <None Remove="Features\Queries\Product\GetProductById\" />
+      <None Remove="Features\Commands\Product\UpdateProduct\" />
+      <None Remove="Features\Commands\Product\RemoveProduct\" />
+      <None Remove="Features\Commands\ProductImageFile\" />
+      <None Remove="Features\Commands\ProductImageFile\UploadProductImage\" />
+      <None Remove="Features\Queries\ProductImageFile\" />
+      <None Remove="Features\Queries\ProductImageFile\GetProductImages\" />
+      <None Remove="Features\Commands\ProductImageFile\RemoveProductImage\" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Repositories\File\" />
@@ -38,5 +55,20 @@
       <Folder Include="Abstractions\Storage\AWS\" />
       <Folder Include="Abstractions\Storage\Google\" />
       <Folder Include="Abstractions\Storage\Azure\" />
+      <Folder Include="Features\" />
+      <Folder Include="Features\Commands\" />
+      <Folder Include="Features\Queries\" />
+      <Folder Include="Features\Commands\Product\" />
+      <Folder Include="Features\Commands\Product\CreateProduct\" />
+      <Folder Include="Features\Queries\Product\" />
+      <Folder Include="Features\Queries\Product\GetAllProducts\" />
+      <Folder Include="Features\Queries\Product\GetProductById\" />
+      <Folder Include="Features\Commands\Product\UpdateProduct\" />
+      <Folder Include="Features\Commands\Product\RemoveProduct\" />
+      <Folder Include="Features\Commands\ProductImageFile\" />
+      <Folder Include="Features\Commands\ProductImageFile\UploadProductImage\" />
+      <Folder Include="Features\Queries\ProductImageFile\" />
+      <Folder Include="Features\Queries\ProductImageFile\GetProductImages\" />
+      <Folder Include="Features\Commands\ProductImageFile\RemoveProductImage\" />
     </ItemGroup>
 </Project>

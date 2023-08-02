@@ -1,3 +1,4 @@
+using ECommerceAPI.Application;
 using ECommerceAPI.Application.Validators.Products;
 using ECommerceAPI.Infrastructure;
 using ECommerceAPI.Infrastructure.Filters;
@@ -22,8 +23,9 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddPersistence();
 builder.Services.AddInfrastructure();
-//builder.Services.AddStorage<LocalStorage>();
+builder.Services.AddApplication();
 builder.Services.AddStorage<AzureStorage>();
+//builder.Services.AddStorage<LocalStorage>();
 
 builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>());
 
