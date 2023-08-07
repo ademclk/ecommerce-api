@@ -44,6 +44,9 @@
       <None Remove="Features\Queries\ProductImageFile\" />
       <None Remove="Features\Queries\ProductImageFile\GetProductImages\" />
       <None Remove="Features\Commands\ProductImageFile\RemoveProductImage\" />
+      <None Remove="Features\Commands\AppUser\" />
+      <None Remove="Features\Commands\AppUser\CreateUser\" />
+      <None Remove="Exceptions\" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Repositories\File\" />
@@ -70,5 +73,8 @@
       <Folder Include="Features\Queries\ProductImageFile\" />
       <Folder Include="Features\Queries\ProductImageFile\GetProductImages\" />
       <Folder Include="Features\Commands\ProductImageFile\RemoveProductImage\" />
+      <Folder Include="Features\Commands\AppUser\" />
+      <Folder Include="Features\Commands\AppUser\CreateUser\" />
+      <Folder Include="Exceptions\" />
     </ItemGroup>
 </Project>

@@ -1,11 +1,9 @@
 using System.Net;
-using Azure.Core;
 using ECommerceAPI.Application.Abstractions.Storage;
 using ECommerceAPI.Application.Features.Commands.Product.CreateProduct;
 using ECommerceAPI.Application.Features.Commands.Product.RemoveProduct;
 using ECommerceAPI.Application.Features.Commands.Product.UpdateProduct;
 using ECommerceAPI.Application.Features.Commands.ProductImageFile.RemoveProductImage;
-using ECommerceAPI.Application.Features.Commands.ProductImageFile.UploadProductImage;
 using ECommerceAPI.Application.Features.Queries.Product.GetAllProducts;
 using ECommerceAPI.Application.Features.Queries.Product.GetProductById;
 using ECommerceAPI.Application.Features.Queries.ProductImageFile.GetProductImages;
@@ -14,47 +12,28 @@ using ECommerceAPI.Application.Repositories.InvoiceFile;
 using ECommerceAPI.Application.Repositories.Product;
 using ECommerceAPI.Application.Repositories.ProductImageFile;
 using ECommerceAPI.Domain.Entities;
-using ECommerceAPI.Persistence.ViewModels.Products;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace ECommerceAPI.API.Controllers;
 
-[ApiController]
 [Route("api/[controller]")]
+[ApiController]
 public class ProductsController : ControllerBase
 {
-    private readonly IProductWriteRepository _productWriteRepository;
     private readonly IProductReadRepository _productReadRepository;
     private readonly IStorageService _storageService;
-    private readonly IFileReadRepository _fileReadRepository;
-    private readonly IFileWriteRepository _fileWriteRepository;
-    private readonly IProductImageFileReadRepository _productImageFileReadRepository;
     private readonly IProductImageFileWriteRepository _productImageFileWriteRepository;
-    private readonly IInvoiceFileReadRepository _invoiceFileReadRepository;
-    private readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
     private readonly IMediator _mediator;
 
     public ProductsController(
-        IProductWriteRepository productWriteRepository,
         IProductReadRepository productReadRepository,
-        IFileReadRepository fileReadRepository,
-        IFileWriteRepository fileWriteRepository,
-        IProductImageFileReadRepository productImageFileReadRepository,
         IProductImageFileWriteRepository productImageFileWriteRepository,
-        IInvoiceFileReadRepository invoiceFileReadRepository,
-        IInvoiceFileWriteRepository invoiceFileWriteRepository,
         IStorageService storageService,
         IMediator mediator)
     {
-        _productWriteRepository = productWriteRepository;
         _productReadRepository = productReadRepository;
-        _fileReadRepository = fileReadRepository;
-        _fileWriteRepository = fileWriteRepository;
-        _productImageFileReadRepository = productImageFileReadRepository;
         _productImageFileWriteRepository = productImageFileWriteRepository;
-        _invoiceFileReadRepository = invoiceFileReadRepository;
-        _invoiceFileWriteRepository = invoiceFileWriteRepository;
         _storageService = storageService;
         _mediator = mediator;
     }

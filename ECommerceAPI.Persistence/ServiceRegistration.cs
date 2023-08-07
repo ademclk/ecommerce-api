@@ -4,6 +4,7 @@ using ECommerceAPI.Application.Repositories.InvoiceFile;
 using ECommerceAPI.Application.Repositories.Order;
 using ECommerceAPI.Application.Repositories.Product;
 using ECommerceAPI.Application.Repositories.ProductImageFile;
+using ECommerceAPI.Domain.Entities.Identity;
 using ECommerceAPI.Persistence.Contexts;
 using ECommerceAPI.Persistence.Repositories.Customer;
 using ECommerceAPI.Persistence.Repositories.File;
@@ -22,6 +23,8 @@ public static class ServiceRegistration
     {
         service.AddDbContext<ECommerceApiDbContext>(options =>
             options.UseNpgsql(Configuration.ConnectionString));
+        service.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<ECommerceApiDbContext>();
+
         service.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
         service.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
         service.AddScoped<IOrderReadRepository, OrderReadRepository>();
